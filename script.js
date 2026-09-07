@@ -244,4 +244,3 @@ function closeGameMode() {
     gameContent.innerHTML = "";
 }
 exitGameBtn.addEventListener('click', closeGameMode);
-    
