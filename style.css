@@ -205,3 +205,17 @@ h1 { font-size: 22px; margin: 0 0 5px 0; font-weight: 700; transform: translateZ
   height: 25px;
   margin-right: 0px;
 }
+
+.subtitle {
+    font-family: monospace;
+    font-weight: 600;
+    min-height: 20px;
+}
+.subtitle::after {
+    content: '|';
+    animation: blinkCursor 0.8s infinite;
+}
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}

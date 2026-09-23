@@ -244,3 +244,45 @@ function closeGameMode() {
     gameContent.innerHTML = "";
 }
 exitGameBtn.addEventListener('click', closeGameMode);
+
+const typewriterElement = document.getElementById('typewriter');
+const textsArray = [
+    "↓↓↓",
+    "пишу на языках html, css, java и Lua.",
+    "↓↓↓",
+  "mankind is dead",
+  "blood is fuel",
+  "hell is full",
+    "↓↓↓",
+    "and thy punishment is death",
+];
+
+let arrayIndex = 0; 
+let charIndex = 0; 
+let isDeleting = false; 
+let typingSpeed = 100;
+
+function typeWriterEffect() {
+    const currentText = textsArray[arrayIndex];
+    if (isDeleting) {
+        typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--; 
+        typingSpeed = 40;
+    } else {
+        typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++; 
+        typingSpeed = 90;
+    }
+
+    if (!isDeleting && charIndex === currentText.length) {
+        typingSpeed = currentText === "↓↓↓" ? 5000 : 2500; 
+        isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        arrayIndex = (arrayIndex + 1) % textsArray.length;
+        typingSpeed = 400;
+    }
+    setTimeout(typeWriterEffect, typingSpeed);
+}
+document.addEventListener("DOMContentLoaded", () => { typeWriterEffect(); });
+
